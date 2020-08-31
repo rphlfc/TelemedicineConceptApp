@@ -9,8 +9,31 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var showDetails = false
+    
     var body: some View {
-        Text("Hello, World!")
+        ZStack(alignment: .bottom) {
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading) {
+                    VStack {
+                        HomeWelcomeView()
+                        
+                        HomeSearchView()
+                    }
+                    .padding()
+                    
+                    HomeFieldsView()
+                    
+                    HomeDoctorsView(showDetails: self.$showDetails)
+                        .padding(.top)
+                    
+                    Spacer()
+                        .frame(height: 40)
+                }
+            }
+            
+            MenuView()
+        }
     }
 }
 
